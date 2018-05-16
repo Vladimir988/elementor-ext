@@ -258,6 +258,14 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 				],
 			]
 		);
+		$this->end_controls_section();
+		$this->start_controls_section(
+			'owl_carousel_section',
+			[
+				'label' => __( 'Owl carousel', 'elementor-custom-element' ),
+				'tab'   => Controls_Manager::TAB_LAYOUT,
+			]
+		);
 		$this->add_control(
 			'owl_carousel',
 			[
@@ -267,14 +275,6 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 				'type'         => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => 'no',
-			]
-		);
-		$this->end_controls_section();
-		$this->start_controls_section(
-			'owl_carousel_section',
-			[
-				'label' => __( 'Owl carousel', 'elementor-custom-element' ),
-				'tab'   => Controls_Manager::TAB_LAYOUT,
 			]
 		);
 		$this->add_control(
