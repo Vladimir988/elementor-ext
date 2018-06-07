@@ -606,7 +606,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		}
 		$template = PARENT_DIR . '/elementor-ext/widgets/post-templates/' . $template_name . '.php';
 		if (file_exists($template)) {
-			return require_once $template;
+			return require $template;
 		} else {
 			return $this->get_default_template();
 		}
