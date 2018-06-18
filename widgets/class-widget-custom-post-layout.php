@@ -693,12 +693,16 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		return array_merge( array( 'full' => esc_html__( 'Full', 'jet-elements' ), ), $result );
 	}
 			
-	public function get_image_url($current_img = 'thumbnail') {
-		if('' !== $this->get_settings('query_image')) {
-			$current_img = $this->get_settings('query_image');
+	public function get_image_url($current_img = false) {
+		if($current_img) {
+			$img_size = $current_img;
+		} elseif ('' !== $this->get_settings('query_image') && !$current_img) {
+			$img_size = $this->get_settings('query_image');
+		} else {
+			$img_size = 'thumbnail';
 		}
 		$thumb_id  = get_post_thumbnail_id();
-		$image_url = wp_get_attachment_image_url( $thumb_id, $current_img );
+		$image_url = wp_get_attachment_image_url( $thumb_id, $img_size );
 		return $image_url;
 	}
 
@@ -738,18 +742,19 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		while ( $query->have_posts() ) {
 			$query->the_post();
 			/*==============================================================*/
-				$date         = get_the_date('d / F / Y');
-				$permalink    = get_the_permalink();
-				$image_url    = $this->get_image_url();
-				$title        = $this->get_posts_title();
-				$content      = $this->get_posts_content();
-				$category     = $this->get_settings('post_cat');
-				$comments     = wp_count_comments(get_the_ID())->total_comments;
-				$author       = get_the_author();
-				$author_email = get_the_author_meta('email');
-				$author_img   = get_avatar_url($author_email, 69);
-				$custom_field = get_post_meta(get_the_ID(), 'value', true);
-				$columns      = $this->get_classes(array(
+				$date              = get_the_date('d / F / Y');
+				$permalink         = get_the_permalink();
+				$img_url           = $this->get_image_url();
+				$img_url_cust_size = $this->get_image_url('full');
+				$title             = $this->get_posts_title();
+				$content           = $this->get_posts_content();
+				$category          = $this->get_settings('post_cat');
+				$comments          = wp_count_comments(get_the_ID())->total_comments;
+				$author            = get_the_author();
+				$author_email      = get_the_author_meta('email');
+				$author_img        = get_avatar_url($author_email, 69);
+				$custom_field      = get_post_meta(get_the_ID(), 'value', true);
+				$columns           = $this->get_classes(array(
 					'desk' => $this->get_settings('columns'),
 					'tab'  => $this->get_settings('columns_tablet'),
 					'mob'  => $this->get_settings('columns_mobile'),
