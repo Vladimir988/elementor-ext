@@ -543,19 +543,35 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 			}
 		} elseif('projects' === $this->get_settings( 'post_type' )) {
 			if('' !== $this->get_settings('posts_query_projects')) {
-				$query_args['taxonomy'] = $this->get_settings('posts_query_projects');
+				$query_args['tax_query'] = array(array(
+					'taxonomy' => 'projects_category',
+					'field'    => 'slug',
+					'terms'    => $this->get_settings('posts_query_projects')
+				));
 			}
 		} elseif('team' === $this->get_settings( 'post_type' )) {
 			if('' !== $this->get_settings('posts_query_team')) {
-				$query_args['taxonomy'] = $this->get_settings('posts_query_team');
+				$query_args['tax_query'] = array(array(
+					'taxonomy' => 'group',
+					'field'    => 'slug',
+					'terms'    => $this->get_settings('posts_query_team')
+				));
 			}
 		} elseif('cherry-services' === $this->get_settings( 'post_type' )) {
 			if('' !== $this->get_settings('posts_query_services')) {
-				$query_args['taxonomy'] = $this->get_settings('posts_query_services');
+				$query_args['tax_query'] = array(array(
+					'taxonomy' => 'cherry-services_category',
+					'field'    => 'slug',
+					'terms'    => $this->get_settings('posts_query_services')
+				));
 			}
 		} elseif('tm-testimonials' === $this->get_settings( 'post_type' )) {
 			if('' !== $this->get_settings('posts_query_testimonials')) {
-				$query_args['taxonomy'] = $this->get_settings('posts_query_testimonials');
+				$query_args['tax_query'] = array(array(
+					'taxonomy' => 'tm-testimonials_category',
+					'field'    => 'slug',
+					'terms'    => $this->get_settings('posts_query_testimonials')
+				));
 			}
 		} else {
 			
