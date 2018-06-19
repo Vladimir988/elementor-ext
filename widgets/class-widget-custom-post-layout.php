@@ -10,7 +10,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'Custom Post Layout', 'elementor-custom-element' );
+		return esc_html__( 'Custom Post Layout', 'elementor-custom-element' );
 	}
 
 	public function get_icon() {
@@ -22,14 +22,14 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->start_controls_section(
 			'custom_post_layout',
 			[
-				'label'   => __( 'Custom Post Layout', 'elementor-custom-element' ),
+				'label'   => esc_html__( 'Custom Post Layout', 'elementor-custom-element' ),
 				'tab'     => Controls_Manager::TAB_LAYOUT,
 			]
 		);
 		$this->add_control(
 			'post_layout',
 			[
-				'label'   => __( 'Post Layout', 'elementor-custom-element' ),
+				'label'   => esc_html__( 'Post Layout', 'elementor-custom-element' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'default',
 				'options' => $this->get_templates_names(),
@@ -38,7 +38,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'post_type',
 			[
-				'label'   => __( 'Post Type', 'elementor-custom-element' ),
+				'label'   => esc_html__( 'Post Type', 'elementor-custom-element' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'post',
 				'options' => $this->cust_get_post_types(),
@@ -47,15 +47,15 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'posts_query_post',
 			[
-				'label'   => __( 'Query posts by', 'elementor-custom-element' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'latest',
-				'options' => array(
-					'latest'   => __( 'Latest Posts', 'elementor-custom-element' ),
-					'ids'      => __( 'By Specific IDs', 'elementor-custom-element' ),
-					'category' => __( 'Category', 'elementor-custom-element' ),
+				'label'      => esc_html__( 'Query posts by', 'elementor-custom-element' ),
+				'type'       => Controls_Manager::SELECT,
+				'default'    => 'latest',
+				'options'    => array(
+					'latest'   => esc_html__( 'Latest Posts', 'elementor-custom-element' ),
+					'ids'      => esc_html__( 'By Specific IDs', 'elementor-custom-element' ),
+					'category' => esc_html__( 'Category', 'elementor-custom-element' ),
 				),
-				'condition' => array(
+				'condition'   => array(
 					'post_type' => 'post',
 				),
 			]
@@ -63,7 +63,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'post_ids',
 			[
-				'label'     => __( 'Set comma seprated IDs list (10, 22, 19 etc.)', 'elementor-custom-element' ),
+				'label'     => esc_html__( 'Set comma seprated IDs list (10, 22, 19 etc.)', 'elementor-custom-element' ),
 				'type'      => Controls_Manager::TEXT,
 				'default'   => '',
 				'condition' => array(
@@ -75,9 +75,10 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'post_cat',
 			[
-				'label'     => __( 'Choose category', 'elementor-custom-element' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'category',
+				'label'     => esc_html__( 'Choose category', 'elementor-custom-element' ),
+				'type'      => Controls_Manager::SELECT2,
+				'multiple'  => true,
+				'default'   => '',
 				'options'   => $this->cust_get_post_categories(),
 				'condition' => array(
 					'post_type'        => 'post',
@@ -88,10 +89,10 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'posts_query_page',
 			[
-				'label'     => __( 'Set Page ID', 'elementor-custom-element' ),
-				'type'      => Controls_Manager::TEXT,
-				'default'   => '',
-				'condition' => array(
+				'label'       => esc_html__( 'Set Page ID', 'elementor-custom-element' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'condition'   => array(
 					'post_type' => 'page',
 				),
 			]
@@ -99,11 +100,12 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'posts_query_projects',
 			[
-				'label'     => __( 'Choose category', 'elementor-custom-element' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => '',
-				'options'   => $this->cust_get_projects_categories(),
-				'condition' => array(
+				'label'       => esc_html__( 'Choose category', 'elementor-custom-element' ),
+				'type'        => Controls_Manager::SELECT2,
+				'multiple'    => true,
+				'default'     => '',
+				'options'     => $this->cust_get_projects_categories(),
+				'condition'   => array(
 					'post_type' => 'projects',
 				),
 			]
@@ -111,11 +113,12 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'posts_query_team',
 			[
-				'label'     => __( 'Choose group', 'elementor-custom-element' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => '',
-				'options'   => $this->cust_get_team_groups(),
-				'condition' => array(
+				'label'       => esc_html__( 'Choose group', 'elementor-custom-element' ),
+				'type'        => Controls_Manager::SELECT2,
+				'multiple'    => true,
+				'default'     => '',
+				'options'     => $this->cust_get_team_groups(),
+				'condition'   => array(
 					'post_type' => 'team',
 				),
 			]
@@ -123,11 +126,12 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'posts_query_services',
 			[
-				'label'     => __( 'Choose services', 'elementor-custom-element' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => '',
-				'options'   => $this->cust_get_services_category(),
-				'condition' => array(
+				'label'       => esc_html__( 'Choose services', 'elementor-custom-element' ),
+				'type'        => Controls_Manager::SELECT2,
+				'multiple'    => true,
+				'default'     => '',
+				'options'     => $this->cust_get_services_category(),
+				'condition'   => array(
 					'post_type' => 'cherry-services',
 				),
 			]
@@ -135,11 +139,12 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'posts_query_testimonials',
 			[
-				'label'     => __( 'Choose testimonials', 'elementor-custom-element' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => '',
-				'options'   => $this->cust_get_testimonials_category(),
-				'condition' => array(
+				'label'       => esc_html__( 'Choose testimonials', 'elementor-custom-element' ),
+				'type'        => Controls_Manager::SELECT2,
+				'multiple'    => true,
+				'default'     => '',
+				'options'     => $this->cust_get_testimonials_category(),
+				'condition'   => array(
 					'post_type' => 'tm-testimonials',
 				),
 			]
@@ -147,16 +152,28 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'query_image',
 			[
-				'label'   => __( 'Choose image size', 'elementor-custom-element' ),
+				'label'   => esc_html__( 'Choose image size', 'elementor-custom-element' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'thumbnail',
 				'options' => $this->get_images(),
 			]
 		);
 		$this->add_control(
+			'order',
+			[
+				'label'   => esc_html__( 'Order By', 'elementor-custom-element' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'DESC',
+				'options' => array(
+					'DESC'  => esc_html__( 'DESC', 'elementor-custom-element' ),
+					'ASC'   => esc_html__( 'ASC', 'elementor-custom-element' ),
+				),
+			]
+		);
+		$this->add_control(
 			'title_trimmed',
 			[
-				'label'        => __( 'Title Word Trim', 'elementor-custom-element' ),
+				'label'        => esc_html__( 'Title Word Trim', 'elementor-custom-element' ),
 				'label_on'     => esc_html__( 'Yes', 'elementor-custom-element' ),
 				'label_off'    => esc_html__( 'No', 'elementor-custom-element' ),
 				'type'         => Controls_Manager::SWITCHER,
@@ -167,7 +184,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'title_length',
 			[
-				'label'     => __( 'Title Length', 'elementor-custom-element' ),
+				'label'     => esc_html__( 'Title Length', 'elementor-custom-element' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 5,
 				'min'       => 1,
@@ -181,7 +198,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'title_trimmed_ending_text',
 			[
-				'label'           => __( 'Title Trimmed Ending', 'elementor-custom-element' ),
+				'label'           => esc_html__( 'Title Trimmed Ending', 'elementor-custom-element' ),
 				'type'            => Controls_Manager::TEXT,
 				'default'         => '...',
 				'condition'       => array(
@@ -192,7 +209,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'excerpt_show',
 			[
-				'label'        => __( 'Show Excerpt', 'elementor-custom-element' ),
+				'label'        => esc_html__( 'Show Excerpt', 'elementor-custom-element' ),
 				'label_on'     => esc_html__( 'Yes', 'elementor-custom-element' ),
 				'label_off'    => esc_html__( 'No', 'elementor-custom-element' ),
 				'type'         => Controls_Manager::SWITCHER,
@@ -203,7 +220,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'excerpt_length',
 			[
-				'label'     => __( 'Excerpt Length', 'elementor-custom-element' ),
+				'label'     => esc_html__( 'Excerpt Length', 'elementor-custom-element' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 35,
 				'min'       => 1,
@@ -217,10 +234,10 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'excerpt_ending_text',
 			[
-				'label'            => __( 'Excerpt Trimmed Ending', 'elementor-custom-element' ),
-				'type'             => Controls_Manager::TEXT,
-				'default'          => '...',
-				'condition'        => array(
+				'label'          => esc_html__( 'Excerpt Trimmed Ending', 'elementor-custom-element' ),
+				'type'           => Controls_Manager::TEXT,
+				'default'        => '...',
+				'condition'      => array(
 					'excerpt_show' => 'yes',
 				),
 			]
@@ -228,7 +245,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'number',
 			[
-				'label'   => __( 'Posts Per Page', 'elementor-custom-element' ),
+				'label'   => esc_html__( 'Posts Per Page', 'elementor-custom-element' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => 3,
 				'min'     => -1,
@@ -239,7 +256,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_responsive_control(
 			'columns',
 			[
-				'label'        => __( 'Columns', 'elementor-custom-element' ),
+				'label'        => esc_html__( 'Columns', 'elementor-custom-element' ),
 				'type'         => Controls_Manager::NUMBER,
 				'default'      => 3,
 				'min'          => 1,
@@ -262,14 +279,14 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->start_controls_section(
 			'owl_carousel_section',
 			[
-				'label' => __( 'Owl carousel', 'elementor-custom-element' ),
+				'label' => esc_html__( 'Owl carousel', 'elementor-custom-element' ),
 				'tab'   => Controls_Manager::TAB_LAYOUT,
 			]
 		);
 		$this->add_control(
 			'owl_carousel',
 			[
-				'label'        => __( 'Enable carousel?', 'elementor-custom-element' ),
+				'label'        => esc_html__( 'Enable carousel?', 'elementor-custom-element' ),
 				'label_on'     => esc_html__( 'Yes', 'elementor-custom-element' ),
 				'label_off'    => esc_html__( 'No', 'elementor-custom-element' ),
 				'type'         => Controls_Manager::SWITCHER,
@@ -280,13 +297,13 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'show_arrows',
 			[
-				'label'        => __( 'Show Arrows Navigation', 'elementor-custom-element' ),
-				'label_on'     => esc_html__( 'Yes', 'elementor-custom-element' ),
-				'label_off'    => esc_html__( 'No', 'elementor-custom-element' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default'      => 'no',
-				'condition' => array(
+				'label'          => esc_html__( 'Show Arrows Navigation', 'elementor-custom-element' ),
+				'label_on'       => esc_html__( 'Yes', 'elementor-custom-element' ),
+				'label_off'      => esc_html__( 'No', 'elementor-custom-element' ),
+				'type'           => Controls_Manager::SWITCHER,
+				'return_value'   => 'yes',
+				'default'        => 'no',
+				'condition'      => array(
 					'owl_carousel' => 'yes',
 				),
 			]
@@ -294,13 +311,13 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'show_dots',
 			[
-				'label'        => __( 'Show Dots Navigation', 'elementor-custom-element' ),
-				'label_on'     => esc_html__( 'Yes', 'elementor-custom-element' ),
-				'label_off'    => esc_html__( 'No', 'elementor-custom-element' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default'      => 'no',
-				'condition' => array(
+				'label'          => esc_html__( 'Show Dots Navigation', 'elementor-custom-element' ),
+				'label_on'       => esc_html__( 'Yes', 'elementor-custom-element' ),
+				'label_off'      => esc_html__( 'No', 'elementor-custom-element' ),
+				'type'           => Controls_Manager::SWITCHER,
+				'return_value'   => 'yes',
+				'default'        => 'no',
+				'condition'      => array(
 					'owl_carousel' => 'yes',
 				),
 			]
@@ -308,28 +325,28 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'dots_each',
 			[
-				'label'        => __( 'Show Dots Each X Item', 'elementor-custom-element' ),
-				'label_on'     => esc_html__( 'Yes', 'elementor-custom-element' ),
-				'label_off'    => esc_html__( 'No', 'elementor-custom-element' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default'      => 'no',
-				'condition' => array(
+				'label'          => esc_html__( 'Show Dots Each X Item', 'elementor-custom-element' ),
+				'label_on'       => esc_html__( 'Yes', 'elementor-custom-element' ),
+				'label_off'      => esc_html__( 'No', 'elementor-custom-element' ),
+				'type'           => Controls_Manager::SWITCHER,
+				'return_value'   => 'yes',
+				'default'        => 'no',
+				'condition'      => array(
 					'owl_carousel' => 'yes',
-					'show_dots' => 'yes',
+					'show_dots'    => 'yes',
 				),
 			]
 		);
 		$this->add_control(
 			'owl_autoplay',
 			[
-				'label'        => __( 'Autoplay', 'elementor-custom-element' ),
-				'label_on'     => esc_html__( 'Yes', 'elementor-custom-element' ),
-				'label_off'    => esc_html__( 'No', 'elementor-custom-element' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default'      => 'yes',
-				'condition' => array(
+				'label'          => esc_html__( 'Autoplay', 'elementor-custom-element' ),
+				'label_on'       => esc_html__( 'Yes', 'elementor-custom-element' ),
+				'label_off'      => esc_html__( 'No', 'elementor-custom-element' ),
+				'type'           => Controls_Manager::SWITCHER,
+				'return_value'   => 'yes',
+				'default'        => 'yes',
+				'condition'      => array(
 					'owl_carousel' => 'yes',
 				),
 			]
@@ -337,7 +354,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'autoplay_timeout',
 			[
-				'label'     => __( 'Autoplay Timeout', 'elementor-custom-element' ),
+				'label'     => esc_html__( 'Autoplay Timeout', 'elementor-custom-element' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 5000,
 				'condition' => array(
@@ -349,7 +366,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'animation_speed',
 			[
-				'label'     => __( 'Animation Speed', 'elementor-custom-element' ),
+				'label'     => esc_html__( 'Animation Speed', 'elementor-custom-element' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 500,
 				'condition' => array(
@@ -360,7 +377,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'owl_margin_slide',
 			[
-				'label'     => __( 'Space Between Slides', 'elementor-custom-element' ),
+				'label'     => esc_html__( 'Space Between Slides', 'elementor-custom-element' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 20,
 				'step'      => 1,
@@ -374,13 +391,13 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'pause_on_hover',
 			[
-				'label'        => __( 'Pause on Hover', 'elementor-custom-element' ),
-				'label_on'     => esc_html__( 'Yes', 'elementor-custom-element' ),
-				'label_off'    => esc_html__( 'No', 'elementor-custom-element' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default'      => 'yes',
-				'condition' => array(
+				'label'          => esc_html__( 'Pause on Hover', 'elementor-custom-element' ),
+				'label_on'       => esc_html__( 'Yes', 'elementor-custom-element' ),
+				'label_off'      => esc_html__( 'No', 'elementor-custom-element' ),
+				'type'           => Controls_Manager::SWITCHER,
+				'return_value'   => 'yes',
+				'default'        => 'yes',
+				'condition'      => array(
 					'owl_carousel' => 'yes',
 				),
 			]
@@ -388,13 +405,13 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_control(
 			'infinite_loop',
 			[
-				'label'        => __( 'Infinite Loop', 'elementor-custom-element' ),
-				'label_on'     => esc_html__( 'Yes', 'elementor-custom-element' ),
-				'label_off'    => esc_html__( 'No', 'elementor-custom-element' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
-				'default'      => 'yes',
-				'condition' => array(
+				'label'          => esc_html__( 'Infinite Loop', 'elementor-custom-element' ),
+				'label_on'       => esc_html__( 'Yes', 'elementor-custom-element' ),
+				'label_off'      => esc_html__( 'No', 'elementor-custom-element' ),
+				'type'           => Controls_Manager::SWITCHER,
+				'return_value'   => 'yes',
+				'default'        => 'yes',
+				'condition'      => array(
 					'owl_carousel' => 'yes',
 				),
 			]
@@ -403,14 +420,14 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->start_controls_section(
 			'custom_posts_background',
 			[
-				'label' => __( 'Column', 'elementor-custom-element' ),
+				'label' => esc_html__( 'Column', 'elementor-custom-element' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_responsive_control(
 			'posts_column_padding',
 			[
-				'label'       => __( 'Column Padding', 'elementor-custom-element' ),
+				'label'       => esc_html__( 'Column Padding', 'elementor-custom-element' ),
 				'type'        => Controls_Manager::DIMENSIONS,
 				'size_units'  => array( 'px' ),
 				'render_type' => 'template',
@@ -422,7 +439,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$this->add_responsive_control(
 			'posts_column_margin',
 			[
-				'label'       => __( 'Column Margin', 'elementor-custom-element' ),
+				'label'       => esc_html__( 'Column Margin', 'elementor-custom-element' ),
 				'type'        => Controls_Manager::DIMENSIONS,
 				'size_units'  => array( 'px' ),
 				'render_type' => 'template',
@@ -457,7 +474,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		);
 		$categories = get_categories($args);
 		foreach ( $categories as $category ) {
-			$result[$category->slug] = $category->name;
+			$result[$category->term_id] = $category->name;
 		}
 		return $result;
 	}
@@ -518,6 +535,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		$query_args = array(
 			'post_status'    => 'publish',
 			'posts_per_page' => $this->get_settings( 'number' ),
+			'order'          => $this->get_settings( 'order' ),
 		);
 
 		if ( '' !== $this->get_settings( 'post_type' ) ) {
@@ -528,7 +546,11 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 			switch($this->get_settings( 'posts_query_post')) {
 				case 'category':
 					if('' !== $this->get_settings('post_cat')) {
-						$query_args['category_name'] = $this->get_settings( 'post_cat' );
+						$result = array();
+						foreach ($this->get_settings('post_cat') as $category) {
+							$result[] = $category;
+						}
+						$query_args['category__in'] = $result;
 					}
 				break;
 				case 'ids':
@@ -543,38 +565,48 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 			}
 		} elseif('projects' === $this->get_settings( 'post_type' )) {
 			if('' !== $this->get_settings('posts_query_projects')) {
-				$query_args['tax_query'] = array(array(
-					'taxonomy' => 'projects_category',
-					'field'    => 'slug',
-					'terms'    => $this->get_settings('posts_query_projects')
-				));
+				$query_args['tax_query'] = array(
+					'relation'   => 'OR',
+					array(
+						'taxonomy' => 'projects_category',
+						'field'    => 'slug',
+						'terms'    => $this->get_settings('posts_query_projects')
+					)
+				);
 			}
 		} elseif('team' === $this->get_settings( 'post_type' )) {
 			if('' !== $this->get_settings('posts_query_team')) {
-				$query_args['tax_query'] = array(array(
-					'taxonomy' => 'group',
-					'field'    => 'slug',
-					'terms'    => $this->get_settings('posts_query_team')
-				));
+				$query_args['tax_query'] = array(
+					'relation'   => 'OR',
+					array(
+						'taxonomy' => 'group',
+						'field'    => 'slug',
+						'terms'    => $this->get_settings('posts_query_team')
+					)
+				);
 			}
 		} elseif('cherry-services' === $this->get_settings( 'post_type' )) {
 			if('' !== $this->get_settings('posts_query_services')) {
-				$query_args['tax_query'] = array(array(
-					'taxonomy' => 'cherry-services_category',
-					'field'    => 'slug',
-					'terms'    => $this->get_settings('posts_query_services')
-				));
+				$query_args['tax_query'] = array(
+					'relation'   => 'OR',
+					array(
+						'taxonomy' => 'cherry-services_category',
+						'field'    => 'slug',
+						'terms'    => $this->get_settings('posts_query_services')
+					)
+				);
 			}
 		} elseif('tm-testimonials' === $this->get_settings( 'post_type' )) {
 			if('' !== $this->get_settings('posts_query_testimonials')) {
-				$query_args['tax_query'] = array(array(
-					'taxonomy' => 'tm-testimonials_category',
-					'field'    => 'slug',
-					'terms'    => $this->get_settings('posts_query_testimonials')
-				));
+				$query_args['tax_query'] = array(
+					'relation'   => 'OR',
+					array(
+						'taxonomy' => 'tm-testimonials_category',
+						'field'    => 'slug',
+						'terms'    => $this->get_settings('posts_query_testimonials')
+					)
+				);
 			}
-		} else {
-			
 		}
 		return new \WP_Query( $query_args );
 	}
@@ -694,7 +726,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		return array_merge( array( 'full' => esc_html__( 'Full', 'jet-elements' ), ), $result );
 	}
 			
-	public function get_image_url($current_img = false) {
+	public function get_image_url( $current_img = false ) {
 		if($current_img) {
 			$img_size = $current_img;
 		} elseif ('' !== $this->get_settings('query_image') && !$current_img) {
