@@ -584,25 +584,26 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 			$current_template_name = $this->get_current_template_name();
 			return '<div class="custom_posts_wrapper' . $current_template_name . '">' . $content . '</div>';
 		}
+		
 		$opts_array = array(
 			'responsive' => array(
-				'0'    => array('items' => (int)$settings['columns_mobile']),
-				'767'  => array('items' => (int)$settings['columns_tablet']),
-				'1025' => array('items' => (int)$settings['columns']),
+				'0'                => array('items' => absint( $settings['columns_mobile'] )),
+				'767'              => array('items' => absint( $settings['columns_tablet'] )),
+				'1025'             => array('items' => absint( $settings['columns'] )),
 			),
+			'navText'            => '',
+			'margin'             => absint( $settings['owl_margin_slide'] ),
+			'navSpeed'           => absint( $settings['animation_speed'] ),
+			'dotsSpeed'          => absint( $settings['animation_speed'] ),
+			'autoplaySpeed'      => absint( $settings['animation_speed'] ),
+			'autoplayTimeout'    => absint( $settings['autoplay_timeout'] ),
+			'loop'               => filter_var( $settings['infinite_loop'], FILTER_VALIDATE_BOOLEAN ),
+			'nav'                => filter_var( $settings['show_arrows'], FILTER_VALIDATE_BOOLEAN ),
+			'dots'               => filter_var( $settings['show_dots'], FILTER_VALIDATE_BOOLEAN ),
+			'autoplay'           => filter_var( $settings['owl_autoplay'], FILTER_VALIDATE_BOOLEAN ),
+			'autoplayHoverPause' => filter_var( $settings['pause_on_hover'], FILTER_VALIDATE_BOOLEAN ),
+			'dotsEach'           => filter_var( $settings['dots_each'], FILTER_VALIDATE_BOOLEAN ),
 		);
-		$opts_array['navText']   = '';
-		$opts_array['margin']    = (int)$settings['owl_margin_slide'];
-		$opts_array['navSpeed']  = (int)$settings['animation_speed'];
-		$opts_array['dotsSpeed'] = (int)$settings['animation_speed'];
-		if('yes' === $settings['infinite_loop']) { $opts_array['loop'] = true; } else { $opts_array['loop'] = false; }
-		if('yes' === $settings['show_arrows']) { $opts_array['nav'] = true; } else { $opts_array['nav'] = false; }
-		if('yes' === $settings['show_dots']) { $opts_array['dots'] = true; } else { $opts_array['dots'] = false; }
-		if('yes' === $settings['owl_autoplay']) { $opts_array['autoplay'] = true; } else { $opts_array['autoplay'] = false; }
-		if('yes' === $settings['owl_autoplay']) { $opts_array['autoplaySpeed'] = (int)$settings['animation_speed']; }
-		if('yes' === $settings['owl_autoplay']) { $opts_array['autoplayTimeout'] = (int)$settings['autoplay_timeout']; }
-		if('yes' === $settings['pause_on_hover']) { $opts_array['autoplayHoverPause'] = true; } else { $opts_array['autoplayHoverPause'] = false; }
-		if('yes' === $settings['dots_each']) { $opts_array['dotsEach'] = true; } else { $opts_array['dotsEach'] = false; }
 
 		$current_template_name = $this->get_current_template_name();
 		return sprintf(
