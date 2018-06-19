@@ -381,7 +381,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 20,
 				'step'      => 1,
-				'min'       => 1,
+				'min'       => 0,
 				'max'       => 200,
 				'condition' => array(
 					'owl_carousel' => 'yes',
