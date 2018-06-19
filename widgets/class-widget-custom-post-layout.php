@@ -14,7 +14,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-slider-full-screen';
+		return 'eicon-posts-grid';
 	}
 
 	protected function _register_controls() {
@@ -797,7 +797,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 			<div class="custom_posts_item <?php echo $columns; ?>">
 
 				<!-- ---------------------- Template Start ---------------------- -->
-				<img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>">
+				<img src="<?php echo $img_url; ?>" alt="<?php echo $title; ?>">
 				<h3><?php echo $title; ?></h3>
 				<p><?php echo $content; ?></p>
 				<div class="time"><time><?php echo $date; ?></time></div>
