@@ -621,7 +621,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 		if('' !== $this->get_settings('post_layout')) {
 			$template_name = $this->get_settings('post_layout');
 		}
-		$template = PARENT_DIR . '/elementor-ext/widgets/post-templates/' . $template_name . '.php';
+		$template = get_template_directory() . '/elementor-ext/widgets/post-templates/' . $template_name . '.php';
 		if (file_exists($template)) {
 			return require $template;
 		} else {
@@ -649,7 +649,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 
 	public function get_templates_names() {
 		$result = array();
-		$scandir = scandir(PARENT_DIR . '/elementor-ext/widgets/post-templates/');
+		$scandir = scandir(get_template_directory() . '/elementor-ext/widgets/post-templates/');
 		foreach($scandir as $dir) {
 			if($dir == '.' || $dir == '..') {
 				continue;
@@ -664,7 +664,7 @@ class Widget_Custom_Post_Layout extends Widget_Base {
 	public function get_current_template_name() {
 		if('' !== $this->get_settings('post_layout')) {
 			$template_name = $this->get_settings('post_layout');
-			if(file_exists(PARENT_DIR . '/elementor-ext/widgets/post-templates/' . $template_name . '.php')) {
+			if(file_exists(get_template_directory() . '/elementor-ext/widgets/post-templates/' . $template_name . '.php')) {
 				$result = 'template-' . strtolower($template_name);
 				$result = str_replace(' ', '', $result);
 				$result = ' ' . $result . ' ';
